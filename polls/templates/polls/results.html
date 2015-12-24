@@ -8,18 +8,16 @@
     </div>
   </div>
 </nav>
-<div class="container-fluid">
-<table class="table table-bordered">
+<div class="container-fluid" width="100%">
 <h1>{{ question.question_text }}</h1>
-
-<ul>
+<table class="table table-striped">
 {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
+    <tr><td>{{ choice.choice_text }}</td><td> -- {{ choice.votes }} vote{{ choice.votes|pluralize }}
+{% endfor %}</td></tr>
+</table>
 
 <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
-</table>
+
 </div>
 
 
