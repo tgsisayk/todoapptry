@@ -1,7 +1,34 @@
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+	Polls
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
 <h1>{{ question.question_text }}</h1>
-<ul>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
 {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }}</li>
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
 {% endfor %}
-</ul>
+<input class="btn btn-default" type="submit" value="Vote" />
+</form>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$("btn btn-default").hover(function(){
+    $(this).animate({ width: "200px" });
+}, function() {
+    $(this).animate({ width: "100px" });
+});
+</script>
