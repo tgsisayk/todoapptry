@@ -4,21 +4,34 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
-	<h1>Polls</h1>
+	Polls
       </a>
     </div>
   </div>
 </nav>
-
+<div class="container-fluid-bordered">
+<h1>Things to vote on</h1>
+<table class="table table-hover">
 {% if latest_question_list %}
-    <ul>
+    
     {% for question in latest_question_list %}
-       <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+     <tr><td> <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></td></tr>
     {% endfor %}
-    </ul>
+    
+</table>
+</div>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<style>
+.table-hover{
+width:600px;
+}
+.container-fluid{
+margin-left:400px;
+}
+
+</style>

@@ -13,7 +13,7 @@
 <table class="table table-striped">
 {% for choice in question.choice_set.all %}
     <tr><td>{{ choice.choice_text }}</td><td> -- {{ choice.votes }} vote{{ choice.votes|pluralize }}
-{% endfor %}<td></tr>
+{% endfor %}</td></tr>
 </table>
 
 <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
